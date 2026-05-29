@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkers — Game Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=3ds&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="https://imgur.com/4wHbgsH.png"/>
+  <link rel="stylesheet" href="checkers.css"/>
+</head>
+<body>
+<div class="page">
+
+  <button class="back-btn" onclick="goBack()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Hub
+  </button>
+
+  <div class="game-header">
+    <h1 class="game-title">Checkers</h1>
+  </div>
+
+  <!-- Difficulty bar (AI only) -->
+  <div class="diff-bar" id="diffBar" style="display:none;">
+    <button class="diff-btn active" data-diff="easy"   onclick="setDiff('easy')">Easy</button>
+    <button class="diff-btn"        data-diff="normal" onclick="setDiff('normal')">Normal</button>
+    <button class="diff-btn"        data-diff="hard"   onclick="setDiff('hard')">Difficult</button>
+  </div>
+
+  <!-- Players -->
+  <div class="players-bar">
+    <div class="player-banner p1 active" id="bannerP1">
+      <div class="banner-name" id="nameP1">Player 1</div>
+      <div class="banner-score p1c" id="scoreP1">0</div>
+      <div class="banner-mark">● Red</div>
+      <div class="pieces-left" id="piecesP1">12 pieces</div>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="player-banner p2" id="bannerP2">
+      <div class="banner-name" id="nameP2">Player 2</div>
+      <div class="banner-score p2c" id="scoreP2">0</div>
+      <div class="banner-mark">● Black</div>
+      <div class="pieces-left" id="piecesP2">12 pieces</div>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="status-wrap">
+    <div class="status-pill turn-p1" id="statusPill">
+      <span class="turn-dot"></span>
+      <span id="statusText">Player 1's turn</span>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <div class="board-container">
+    <div class="board-outer">
+      <div class="board-grid" id="board"></div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-primary" onclick="newGame()">New Game</button>
+    <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+  </div>
+
+</div>
+
+<!-- End overlay -->
+<div class="overlay" id="overlay">
+  <div class="overlay-card">
+    <span class="overlay-emoji" id="overlayEmoji">🏆</span>
+    <div class="overlay-title" id="overlayTitle"></div>
+    <div class="overlay-sub"   id="overlaySub"></div>
+    <div class="overlay-btns">
+      <button class="btn btn-primary"   onclick="newGame()">Play Again</button>
+      <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+    </div>
+  </div>
+</div>
+
+<script src="checkers.js"></script>
+</body>
+</html>

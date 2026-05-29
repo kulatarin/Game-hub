@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ludo — Game Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=3ds&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="https://imgur.com/4wHbgsH.png"/>
+  <link rel="stylesheet" href="ludo.css"/>
+</head>
+<body>
+<div class="page">
+
+  <button class="back-btn" onclick="goBack()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Hub
+  </button>
+
+  <div class="game-header">
+    <h1 class="game-title">Ludo</h1>
+  </div>
+
+  <!-- Player banners (up to 4) -->
+  <div class="players-grid" id="playersGrid"></div>
+
+  <!-- Status + Dice -->
+  <div class="status-wrap">
+    <div class="status-pill turn-r" id="statusPill">
+      <span class="turn-dot"></span>
+      <span id="statusText">Roll the dice</span>
+    </div>
+    <div class="dice-display" id="diceDisplay" onclick="rollDice()">🎲</div>
+  </div>
+
+  <!-- Board -->
+  <div class="board-container">
+    <div class="board-outer">
+      <div class="ludo-board" id="ludoBoard"></div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-primary" onclick="newGame()">New Game</button>
+    <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+  </div>
+
+  <!-- Log -->
+  <div class="log-wrap" id="logWrap"></div>
+
+</div>
+
+<!-- Win overlay -->
+<div class="overlay" id="overlay">
+  <div class="overlay-card">
+    <span class="overlay-emoji" id="overlayEmoji">🏆</span>
+    <div class="overlay-title" id="overlayTitle"></div>
+    <div class="overlay-sub"   id="overlaySub"></div>
+    <div class="overlay-btns">
+      <button class="btn btn-primary"   onclick="newGame()">Play Again</button>
+      <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+    </div>
+  </div>
+</div>
+
+<script src="ludo.js"></script>
+</body>
+</html>

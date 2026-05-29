@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic-Tac-Toe — Game Hub</title>
+  <link rel="icon" type="image/png" href="https://imgur.com/4wHbgsH.png" />
+  <link rel="stylesheet" href="ttt.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=3ds&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<div class="page">
+
+  <button class="back-btn" onclick="goBack()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Hub
+  </button>
+
+  <div class="game-header">
+    <h1 class="game-title">Tic-Tac-Toe</h1>
+  </div>
+
+  <!-- Player banners -->
+  <div class="players-bar">
+    <div class="player-banner p1 active" id="bannerP1">
+      <div class="banner-name" id="nameP1">Player 1</div>
+      <div class="banner-score p1c" id="scoreP1">0</div>
+      <div class="banner-mark">✕ X</div>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="player-banner p2" id="bannerP2">
+      <div class="banner-name" id="nameP2">Player 2</div>
+      <div class="banner-score p2c" id="scoreP2">0</div>
+      <div class="banner-mark">○ O</div>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="status-wrap">
+    <div class="status-pill turn-p1" id="statusPill">
+      <span class="turn-dot"></span>
+      <span id="statusText">Player 1's turn</span>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <div class="board-wrap">
+    <div class="board" id="board" style="position:relative;">
+      <div class="cell" data-i="0" onclick="cellClick(0)"></div>
+      <div class="cell" data-i="1" onclick="cellClick(1)"></div>
+      <div class="cell" data-i="2" onclick="cellClick(2)"></div>
+      <div class="cell" data-i="3" onclick="cellClick(3)"></div>
+      <div class="cell" data-i="4" onclick="cellClick(4)"></div>
+      <div class="cell" data-i="5" onclick="cellClick(5)"></div>
+      <div class="cell" data-i="6" onclick="cellClick(6)"></div>
+      <div class="cell" data-i="7" onclick="cellClick(7)"></div>
+      <div class="cell" data-i="8" onclick="cellClick(8)"></div>
+      <svg class="win-line-svg" id="winLineSvg" viewBox="0 0 3 3" preserveAspectRatio="none"></svg>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-primary" onclick="newRound()">New Round</button>
+    <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+  </div>
+
+  <!-- History -->
+  <div class="history-wrap">
+    <div class="history-label">Round History</div>
+    <div class="history-chips" id="historyChips">
+      <span class="chip" style="color:var(--dim);font-size:11px;">No rounds yet</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Win / Draw Overlay -->
+<div class="overlay" id="overlay">
+  <div class="overlay-card">
+    <span class="overlay-emoji" id="overlayEmoji">🎉</span>
+    <div class="overlay-title" id="overlayTitle">Player 1 Wins!</div>
+    <div class="overlay-sub" id="overlaySub">Round over</div>
+    <div class="overlay-btns">
+      <button class="btn btn-primary" onclick="newRound()">Play Again</button>
+      <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+    </div>
+  </div>
+</div>
+
+<script src="ttt.js"></script>
+</body>
+</html>

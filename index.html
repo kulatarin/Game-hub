@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=3ds&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="https://imgur.com/4wHbgsH.png"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="bg-layer" aria-hidden="true"></div>
+
+<div class="hub-wrap">
+
+  <header class="hub-header">
+    <div class="header-inner">
+      <div class="logo-mark">
+        <span class="logo-r">T</span><span class="logo-b">R</span><span class="logo-r">I</span><span class="logo-b">X</span>
+      </div>
+      <div>
+        <h1 class="hub-title">Game Hub</h1>
+        <p class="hub-sub">Local Multiplayer &mdash; Up to 4 Players</p>
+      </div>
+      <button class="btn btn-reset-scores" onclick="resetScores()">Reset Scores</button>
+    </div>
+  </header>
+
+  <!-- Scoreboard -->
+  <section class="section">
+    <h2 class="section-label">Scoreboard</h2>
+    <div class="scoreboard" id="scoreboard"></div>
+  </section>
+
+  <!-- Players -->
+  <section class="section">
+    <h2 class="section-label">Players</h2>
+    <div class="players-setup" id="playersSetup"></div>
+    <button class="btn btn-add" id="addPlayerBtn" onclick="addPlayer()">
+      <span class="btn-icon">+</span> Add Player
+    </button>
+  </section>
+
+  <!-- Games -->
+  <section class="section">
+    <h2 class="section-label">Choose a Game</h2>
+
+    <p class="category-label">Classic Board</p>
+    <div class="games-grid">
+
+      <button class="game-card" data-game="ludo" onclick="selectGame('ludo')">
+        <div class="game-icon-wrap"><img src="icons/ludo.png" width="36" height="36" alt="Ludo"/></div>
+        <span class="game-name">Ludo</span>
+        <span class="game-players">2–4 players</span>
+      </button>
+
+      <button class="game-card" data-game="snakes" onclick="selectGame('snakes')">
+        <div class="game-icon-wrap"><img src="icons/snakes.png" width="36" height="36" alt="Snakes & Ladders"/></div>
+        <span class="game-name">Snakes &amp; Ladders</span>
+        <span class="game-players">2–4 players</span>
+      </button>
+
+      <button class="game-card" data-game="chess" onclick="selectGame('chess')">
+        <div class="game-icon-wrap"><img src="icons/chess.png" width="36" height="36" alt="Chess"/></div>
+        <span class="game-name">Chess</span>
+        <span class="game-players">2 players</span>
+      </button>
+
+      <button class="game-card" data-game="checkers" onclick="selectGame('checkers')">
+        <div class="game-icon-wrap"><img src="icons/checkers.png" width="36" height="36" alt="Checkers"/></div>
+        <span class="game-name">Checkers</span>
+        <span class="game-players">2 players</span>
+      </button>
+
+      <button class="game-card" data-game="dots" onclick="selectGame('dots')">
+        <div class="game-icon-wrap"><img src="icons/dots.png" width="36" height="36" alt="Dots & Boxes"/></div>
+        <span class="game-name">Dots &amp; Boxes</span>
+        <span class="game-players">2–4 players</span>
+      </button>
+
+    </div>
+
+    <p class="category-label" style="margin-top:28px;">Puzzle &amp; Arcade</p>
+    <div class="games-grid">
+
+      <button class="game-card" data-game="ttt" onclick="selectGame('ttt')">
+        <div class="game-icon-wrap"><img src="icons/ttt.png" width="36" height="36" alt="Tic-Tac-Toe"/></div>
+        <span class="game-name">Tic-Tac-Toe</span>
+        <span class="game-players">2 players</span>
+      </button>
+
+      <button class="game-card" data-game="memory" onclick="selectGame('memory')">
+        <div class="game-icon-wrap"><img src="icons/memory.png" width="36" height="36" alt="Memory Flip"/></div>
+        <span class="game-name">Memory Flip</span>
+        <span class="game-players">1–4 players</span>
+      </button>
+
+      <button class="game-card" data-game="sliding" onclick="selectGame('sliding')">
+        <div class="game-icon-wrap"><img src="icons/sliding.png" width="36" height="36" alt="Sliding Puzzle"/></div>
+        <span class="game-name">Sliding Puzzle</span>
+        <span class="game-players">1–2 players</span>
+      </button>
+
+      <button class="game-card" data-game="colormatch" onclick="selectGame('colormatch')">
+        <div class="game-icon-wrap"><img src="icons/colormatch.png" width="36" height="36" alt="Color Match"/></div>
+        <span class="game-name">Color Match</span>
+        <span class="game-players">1–4 players</span>
+      </button>
+
+      <button class="game-card" data-game="buttonmash" onclick="selectGame('buttonmash')">
+        <div class="game-icon-wrap"><img src="icons/buttonmash.png" width="36" height="36" alt="Button Mash Race"/></div>
+        <span class="game-name">Button Mash Race</span>
+        <span class="game-players">2–4 players</span>
+      </button>
+
+      <button class="game-card" data-game="dodge" onclick="selectGame('dodge')">
+        <div class="game-icon-wrap"><img src="icons/dodge.png" width="36" height="36" alt="Dodging Game"/></div>
+        <span class="game-name">Dodging Game</span>
+        <span class="game-players">1–2 players</span>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- Launch -->
+  <section class="section launch-section">
+    <button class="btn btn-launch" id="launchBtn" onclick="launchGame()" disabled>Start Game</button>
+    <p class="launch-hint" id="launchHint">Select a game to continue</p>
+  </section>
+
+</div>
+
+<footer class="hub-footer">
+  Designed &amp; Developed by
+  <a href="https://tiktok.com/@mr_tarin_official" target="_blank">Kula Tarin</a>
+  <p>&copy; 2024 Game Hub. All rights reserved.</p>
+</footer>
+
+<!-- Avatar modal -->
+<div class="avatar-modal" id="avatarModal">
+  <div class="avatar-modal-card">
+    <div class="avatar-modal-title" id="avatarModalTitle">Choose Avatar</div>
+    <div class="avatar-preset-grid" id="avatarPresetGrid"></div>
+    <div class="avatar-divider">OR UPLOAD</div>
+    <div class="avatar-upload-area" id="avatarUploadArea"
+         onclick="document.getElementById('avatarUploadInput')?.click()">
+      <label class="avatar-upload-label">
+        Click to upload an image<br><span>JPG, PNG, GIF supported</span>
+      </label>
+      <input type="file" id="avatarUploadInput" accept="image/*" onchange="handleAvatarUpload(event)"/>
+    </div>
+    <div class="avatar-modal-actions">
+      <button class="btn btn-secondary" onclick="closeAvatarModal()">Cancel</button>
+      <button class="btn btn-primary"   onclick="confirmAvatar()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess — Game Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=3ds&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="https://imgur.com/4wHbgsH.png" />
+    <link rel="stylesheet" href="chess.css">
+
+</head>
+<body>
+
+<div class="page">
+
+  <button class="back-btn" onclick="goBack()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Hub
+  </button>
+
+  <div class="game-header">
+    <h1 class="game-title">Chess</h1>
+  </div>
+
+<div class="diff-bar" id="diffBar" style="display:none;">
+  <button class="diff-btn active" data-diff="easy"   onclick="setDiff('easy')">Easy</button>
+  <button class="diff-btn"        data-diff="normal" onclick="setDiff('normal')">Normal</button>
+  <button class="diff-btn"        data-diff="hard"   onclick="setDiff('hard')">Difficult</button>
+</div>
+
+  <!-- Player banners -->
+  <div class="players-bar">
+    <div class="player-banner p1 active" id="bannerP1">
+      <div class="banner-name" id="nameP1">Player 1</div>
+      <div class="banner-score p1c" id="scoreP1">0</div>
+      <div class="banner-mark">♙ White</div>
+      <div class="captured-row" id="capturedByW"></div>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="player-banner p2" id="bannerP2">
+      <div class="banner-name" id="nameP2">Player 2</div>
+      <div class="banner-score p2c" id="scoreP2">0</div>
+      <div class="banner-mark">♟ Black</div>
+      <div class="captured-row" id="capturedByB"></div>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="status-wrap">
+    <div class="status-pill turn-p1" id="statusPill">
+      <span class="turn-dot"></span>
+      <span id="statusText">White's turn</span>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <div class="board-container">
+    <div class="board-outer">
+      <div class="board-inner">
+        <div class="coord-col" id="coordRanks"></div>
+        <div>
+          <div class="board-grid" id="board"></div>
+          <div class="coord-row" id="coordFiles"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-primary" onclick="newGame()">New Game</button>
+    <button class="btn btn-undo" id="undoBtn" onclick="undoMove()" disabled>↩ Undo</button>
+    <button class="btn btn-warn" onclick="resignGame()">Resign</button>
+    <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+  </div>
+
+  <!-- Move history -->
+  <div class="history-wrap">
+    <div class="history-label">Move History</div>
+    <div class="move-list" id="moveList">
+      <span class="move-num" style="color:var(--dim);grid-column:1/4;font-size:11px;">No moves yet</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Promotion modal -->
+<div class="promo-modal" id="promoModal">
+  <div class="promo-card">
+    <div class="promo-title">Promote Pawn</div>
+    <div class="promo-pieces" id="promoPieces"></div>
+  </div>
+</div>
+
+<!-- Win / Draw Overlay -->
+<div class="overlay" id="overlay">
+  <div class="overlay-card">
+    <span class="overlay-emoji" id="overlayEmoji">♟</span>
+    <div class="overlay-title" id="overlayTitle">White Wins!</div>
+    <div class="overlay-sub" id="overlaySub">Checkmate</div>
+    <div class="overlay-btns">
+      <button class="btn btn-primary" onclick="newGame()">Play Again</button>
+      <button class="btn btn-secondary" onclick="goBack()">Hub</button>
+    </div>
+  </div>
+</div>
+
+<script src="chess.js"></script>
+</body>
+</html>
