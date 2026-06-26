@@ -18,6 +18,7 @@ const GAMES = {
   colormatch: { name: 'Color Match',      minPlayers: 1, maxPlayers: 4, file: 'colormatch.html' },
   buttonmash: { name: 'Button Mash Race', minPlayers: 2, maxPlayers: 4, file: 'buttonmash.html' },
   dodge:      { name: 'Dodging Game',     minPlayers: 1, maxPlayers: 2, file: 'dodge.html' },
+  coming-soon:{ name: 'Up coming Game',   minPlayers: 1, maxPlayers: 4, file: 'Coming-soon.html' },
 };
 
 // ── State ─────────────────────────────────────────────────────────────────────
