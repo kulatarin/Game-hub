@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Hub — Coming Soon</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="coming-soon.css" />
+</head>
+<body>
+
+  <!-- corner decorations -->
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="container">
+
+    <!-- logo -->
+    <div class="logo">
+      <div class="logo-icon">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <span class="site-name">GAME HUB</span>
+    </div>
+
+    <!-- headline -->
+    <h1 class="headline">
+      NEW GAMES<br><span class="accent">LOADING</span><span class="cursor"></span>
+    </h1>
+
+    <p class="sub">
+      More local multiplayer action is on the way.<br>
+      Up to 4 players. Zero online required.
+    </p>
+
+    <!-- countdown -->
+    <div class="countdown">
+      <div class="unit"><span class="num" id="cd-days">00</span><span class="lbl">DAYS</span></div>
+      <div class="unit"><span class="num" id="cd-hrs">00</span><span class="lbl">HRS</span></div>
+      <div class="unit"><span class="num" id="cd-min">00</span><span class="lbl">MIN</span></div>
+      <div class="unit"><span class="num" id="cd-sec">00</span><span class="lbl">SEC</span></div>
+    </div>
+
+    <!-- notify -->
+    <div class="notify" id="notify-form">
+      <input type="email" id="email-input" placeholder="your@email.com" autocomplete="email" />
+      <button onclick="handleNotify()">NOTIFY ME</button>
+    </div>
+    <p class="success-msg" id="success-msg">✔ YOU'RE ON THE LIST!</p>
+
+    <!-- games -->
+    <p class="games-label">GAME STATUS</p>
+    <div class="games-row">
+      <span class="pill live">Ludo</span>
+      <span class="pill live">Chess</span>
+      <span class="pill live">Checkers</span>
+      <span class="pill live">Snakes &amp; Ladders</span>
+      <span class="pill live">Dots &amp; Boxes</span>
+      <span class="pill live">Memory Flip</span>
+      <span class="pill live">Tic-Tac-Toe</span>
+      <span class="pill soon">Sliding Puzzle</span>
+      <span class="pill soon">Color Match</span>
+      <span class="pill soon">Button Mash Race</span>
+      <span class="pill soon">Dodging Game</span>
+    </div>
+
+  </div>
+
+  <footer>
+    Designed &amp; Developed by
+    <a href="https://tiktok.com/@mr_tarin_official" target="_blank">Kula Tarin</a>
+    &nbsp;·&nbsp; © 2024 Game Hub
+  </footer>
+
+  <script src="coming-soon.js"></script>
+</body>
+</html>
