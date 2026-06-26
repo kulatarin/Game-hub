@@ -1,9 +1,10 @@
 const PLAYER_COLORS   = ['c0', 'c1', 'c2', 'c3'];
-const PLAYER_DEFAULTS = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+const PLAYER_DEFAULTS = ['Ryan', 'Bashir', 'Kula', 'Tarin'];
 const MAX_PLAYERS     = 4;
 const PRESET_AVATARS  = [
   '🧑','👩','🧔','👱','🧒','👧','🧓','👴',
-  '🦊','🐺','🐯','🦁','🐻','🐼','🐸','🤖'
+  '🦊','🐺','🐯','🦁','🐻','🐼','🐸','🤖',
+  '🫢','👾','💀','😎','🤡','🦁','🐺','🐷',
 ];
 
 const GAMES = {
@@ -18,7 +19,7 @@ const GAMES = {
   colormatch: { name: 'Color Match',      minPlayers: 1, maxPlayers: 4, file: 'colormatch.html' },
   buttonmash: { name: 'Button Mash Race', minPlayers: 2, maxPlayers: 4, file: 'buttonmash.html' },
   dodge:      { name: 'Dodging Game',     minPlayers: 1, maxPlayers: 2, file: 'dodge.html' },
-  coming-soon:{ name: 'Up coming Game',   minPlayers: 1, maxPlayers: 4, file: 'Coming-soon.html' },
+  comingsoon: { name: 'Up coming Game',   minPlayers: 1, maxPlayers: 4, file: 'comingsoon.html' },
 };
 
 // ── State ─────────────────────────────────────────────────────────────────────
