@@ -1,10 +1,10 @@
 const PLAYER_COLORS   = ['c0', 'c1', 'c2', 'c3'];
-const PLAYER_DEFAULTS = ['Ryan', 'Bashir', 'Kula', 'Tarin'];
+const PLAYER_DEFAULTS = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
 const MAX_PLAYERS     = 4;
 const PRESET_AVATARS  = [
   '🧑','👩','🧔','👱','🧒','👧','🧓','👴',
   '🦊','🐺','🐯','🦁','🐻','🐼','🐸','🤖',
-  '🫢','👾','💀','😎','🤡','🦁','🐺','🐷',
+  '🫢','👾','💀','😎','🤡','🦁','🐺','🐷'
 ];
 
 const GAMES = {
