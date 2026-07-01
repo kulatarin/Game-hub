@@ -4,7 +4,7 @@ const MAX_PLAYERS     = 4;
 const PRESET_AVATARS  = [
   '🧑','👩','🧔','👱','🧒','👧','🧓','👴',
   '🦊','🐺','🐯','🦁','🐻','🐼','🐸','🤖',
-  '🫢','👾','💀','😎','🤡','🦁','🐺','🐷'
+  '🫢','👾','💀','😎','🤡','🐷'
 ];
 
 const GAMES = {
@@ -25,7 +25,14 @@ const GAMES = {
 function loadState() {
   try {
     const s = sessionStorage.getItem('gamehub_state');
-    if (s) return JSON.parse(s);
+    if (s) {
+      const parsedState = JSON.parse(s);
+      // Validate state structure and provide defaults for missing properties
+      return {
+        players: parsedState.players || [{ name: 'Player 1', score: 0, isAI: false, avatar: '🧑' }],
+        selectedGame: parsedState.selectedGame || null
+      };
+    }
   } catch(_) {}
   return {
     players: [{ name: 'Player 1', score: 0, isAI: false, avatar: '🧑' }],
@@ -49,6 +56,8 @@ function render() {
 
 function renderScoreboard() {
   const el = document.getElementById('scoreboard');
+  if (!el) return; // DOM Safety Check
+
   if (!state.players.length) {
     el.innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:4px 0;">No players yet.</p>';
     return;
@@ -73,6 +82,8 @@ function renderScoreboard() {
 
 function renderPlayerSetup() {
   const el = document.getElementById('playersSetup');
+  if (!el) return; // DOM Safety Check
+
   el.innerHTML = state.players.map((p, i) => {
     const avatarHtml = p.avatar?.startsWith('data:')
       ? `<img src="${p.avatar}" alt="avatar"/>`
@@ -104,8 +115,11 @@ function renderPlayerSetup() {
       </div>`;
   }).join('');
 
-  document.getElementById('addPlayerBtn').style.display =
-    state.players.length >= MAX_PLAYERS ? 'none' : 'inline-flex';
+  const addPlayerBtn = document.getElementById('addPlayerBtn');
+  if (addPlayerBtn) { // DOM Safety Check
+    addPlayerBtn.style.display =
+      state.players.length >= MAX_PLAYERS ? 'none' : 'inline-flex';
+  }
 }
 
 function syncGameCards() {
@@ -117,6 +131,8 @@ function syncGameCards() {
 function renderLaunch() {
   const btn   = document.getElementById('launchBtn');
   const hint  = document.getElementById('launchHint');
+  if (!btn || !hint) return; // DOM Safety Check
+
   const game  = state.selectedGame ? GAMES[state.selectedGame] : null;
   const count = state.players.length;
 
@@ -222,24 +238,35 @@ function openAvatarModal(index) {
   avatarTargetIndex = index;
   pendingAvatar     = state.players[index].avatar || PRESET_AVATARS[0];
 
-  document.getElementById('avatarModalTitle').textContent =
-    `Choose Avatar — ${state.players[index].name}`;
+  const avatarModalTitle = document.getElementById('avatarModalTitle');
+  if (avatarModalTitle) { // DOM Safety Check
+    avatarModalTitle.textContent =
+      `Choose Avatar — ${state.players[index].name}`;
+  }
 
   const grid = document.getElementById('avatarPresetGrid');
-  grid.innerHTML = PRESET_AVATARS.map(a => `
-    <button class="avatar-preset-btn ${pendingAvatar === a ? 'selected' : ''}"
-            onclick="selectPresetAvatar('${a}', this)">
-      ${a}
-    </button>`).join('');
+  if (grid) { // DOM Safety Check
+    grid.innerHTML = PRESET_AVATARS.map(a => `
+      <button class="avatar-preset-btn ${pendingAvatar === a ? 'selected' : ''}"
+              onclick="selectPresetAvatar('${a}', this)">
+        ${a}
+      </button>`).join('');
+  }
 
   // Reset upload area
-  document.getElementById('avatarUploadArea').innerHTML = `
-    <label class="avatar-upload-label">
-      Click to upload an image<br><span>JPG, PNG, GIF supported</span>
-    </label>
-    <input type="file" id="avatarUploadInput" accept="image/*" onchange="handleAvatarUpload(event)"/>`;
+  const avatarUploadArea = document.getElementById('avatarUploadArea');
+  if (avatarUploadArea) { // DOM Safety Check
+    avatarUploadArea.innerHTML = `
+      <label class="avatar-upload-label">
+        Click to upload an image<br><span>JPG, PNG, GIF supported</span>
+      </label>
+      <input type="file" id="avatarUploadInput" accept="image/*" onchange="handleAvatarUpload(event)"/>`;
+  }
 
-  document.getElementById('avatarModal').classList.add('show');
+  const avatarModal = document.getElementById('avatarModal');
+  if (avatarModal) { // DOM Safety Check
+    avatarModal.classList.add('show');
+  }
 }
 
 function selectPresetAvatar(avatar, btn) {
@@ -255,9 +282,12 @@ function handleAvatarUpload(e) {
   reader.onload = ev => {
     pendingAvatar = ev.target.result;
     document.querySelectorAll('.avatar-preset-btn').forEach(b => b.classList.remove('selected'));
-    document.getElementById('avatarUploadArea').innerHTML = `
-      <img src="${pendingAvatar}" style="width:48px;height:48px;border-radius:50%;object-fit:cover;" alt="preview"/>
-      <div style="font-size:10px;color:var(--text-muted);margin-top:6px;">Image selected</div>`;
+    const avatarUploadArea = document.getElementById('avatarUploadArea');
+    if (avatarUploadArea) { // DOM Safety Check
+      avatarUploadArea.innerHTML = `
+        <img src="${pendingAvatar}" style="width:48px;height:48px;border-radius:50%;object-fit:cover;" alt="preview"/>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:6px;">Image selected</div>`;
+    }
   };
   reader.readAsDataURL(file);
 }
@@ -271,7 +301,10 @@ function confirmAvatar() {
 }
 
 function closeAvatarModal() {
-  document.getElementById('avatarModal').classList.remove('show');
+  const avatarModal = document.getElementById('avatarModal');
+  if (avatarModal) { // DOM Safety Check
+    avatarModal.classList.remove('show');
+  }
   avatarTargetIndex = null;
   pendingAvatar     = null;
 }
@@ -293,7 +326,9 @@ function showToast(msg) {
 
 // ── Utils ─────────────────────────────────────────────────────────────────────
 function initials(name) {
-  return (name || '?').trim().split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+  const nameParts = (name || '').trim().split(' ').filter(Boolean);
+  if (nameParts.length === 0) return '?';
+  return nameParts.map(w => w[0]).slice(0, 2).join('').toUpperCase();
 }
 function escHtml(str) {
   return String(str)
@@ -302,4 +337,14 @@ function escHtml(str) {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-render();
+document.addEventListener('DOMContentLoaded', () => {
+  render();
+  // Inject Comic Sans MS font
+  const style = document.createElement('style');
+  style.textContent = `
+    body {
+      font-family: "Comic Sans MS", "Comic Sans", cursive !important;
+    }
+  `;
+  document.head.appendChild(style);
+});
