@@ -231,7 +231,7 @@ function makeMove(fr, fc, tr, tc, promoType) {
       lastFrom = { r:fr, c:fc };
       lastTo   = { r:tr, c:tc };
       renderBoard();
-      showPromoModal(fr, fc, tr, tc);
+      showPromoModal(fr, fc, tr, tc, piece.color); // <-- Added piece.color
       return;
     }
     newBoard[tr][tc] = { color: piece.color, type: promoType };
@@ -289,9 +289,8 @@ function makeMove(fr, fc, tr, tc, promoType) {
 }
 
 // ── Promotion modal ───────────────────────────────────────────────────────────
-function showPromoModal(fr, fc, tr, tc) {
+function showPromoModal(fr, fc, tr, tc, color) { // <-- Added color here
   pendingPromo = { fr, fc, tr, tc };
-  const color  = tr === 0 ? 'b' : 'w';
   const pieces = ['Q','R','B','N'];
   document.getElementById('promoPieces').innerHTML = pieces.map(t =>
     `<button class="promo-btn" onclick="choosePromo('${t}')">${UNICODE[color + t]}</button>`
