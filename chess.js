@@ -299,11 +299,33 @@ function showPromoModal(fr, fc, tr, tc, color) { // <-- Added color here
 }
 
 function choosePromo(type) {
-  document.getElementById('promoModal').classList.remove('show');
-  if (!pendingPromo) return;
-  const { fr, fc, tr, tc } = pendingPromo;
-  pendingPromo = null;
-  makeMove(fr, fc, tr, tc, type);
+    document.getElementById('promoModal').classList.remove('show');
+
+    if (!pendingPromo) return;
+
+    const { tr, tc } = pendingPromo;
+
+    // Replace the pawn already on the board
+    if (board[tr][tc] && board[tr][tc].type === 'P') {
+        board[tr][tc] = {
+            color: board[tr][tc].color,
+            type: type
+        };
+    }
+
+    pendingPromo = null;
+
+    turn = turn === 'w' ? 'b' : 'w';
+
+    renderBoard();
+    updateStatus();
+    updateBanners();
+    renderCaptured();
+    renderMoveList();
+
+    if (isAI && turn === 'b' && !gameOver) {
+        setTimeout(doAIMove, 450);
+    }
 }
 
 // ── Legal move generation ─────────────────────────────────────────────────────
