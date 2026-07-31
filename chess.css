@@ -1,35 +1,30 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root{
-    --bg:#090909;
-    --bg-surface:#111111;
-    --bg-card:#181818;
-    --bg-hover:#242424;
-
-    --border:rgba(255,255,255,.08);
-    --border-mid:rgba(255,255,255,.15);
-    --border-hi:rgba(255,255,255,.25);
-
-    --text:#f4f4f4;
-    --muted:#a8a8a8;
-    --dim:#5c5c5c;
-
-    --font:'3ds','Segoe UI',sans-serif;
-    --radius:14px;
-
-    /* Board */
-    --sq-light:#efefef;
-    --sq-dark:#707070;
-
-    --sq-select:rgba(255,255,255,.45);
-    --sq-move:rgba(255,255,255,.25);
-    --sq-check:#d9d9d9;
-    --sq-last:#9c9c9c;
-
-    /* Accent */
-    --accent:#ffffff;
-    --accent-dark:#000000;
-}
+    :root {
+      --red:        #e03030;
+      --red-glow:   rgba(224,48,48,0.2);
+      --blue:       #3366ff;
+      --blue-glow:  rgba(51,102,255,0.2);
+      --gold:       #ffb432;
+      --bg:         #0c0c14;
+      --bg-surface: #11111e;
+      --bg-card:    #13131f;
+      --bg-hover:   #1a1a28;
+      --border:     rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.13);
+      --border-hi:  rgba(255,255,255,0.22);
+      --text:       #e8e8f0;
+      --muted:      #6b6b80;
+      --dim:        #2e2e42;
+      --font:       '3ds', 'Segoe UI', sans-serif;
+      --radius:     12px;
+      --sq-light:   #c8b98a;
+      --sq-dark:    #7a5c3a;
+      --sq-select:  rgba(255,180,50,0.55);
+      --sq-move:    rgba(255,180,50,0.28);
+      --sq-check:   rgba(224,48,48,0.55);
+      --sq-last:    rgba(100,180,80,0.3);
+    }
 
     html { scroll-behavior: smooth; }
 
