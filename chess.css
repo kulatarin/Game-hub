@@ -115,31 +115,44 @@
       margin-bottom: 20px;
     }
 
-    .player-banner {
+     .player-banner {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 12px 16px;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-   .player-banner.active{
+    .player-banner.p1 { text-align: left; }
+    .player-banner.p2 { text-align: right; }
 
-    border-color:white;
-
-    box-shadow:
-
-    0 0 18px rgba(255,255,255,.35);
-
-}
-    .banner-name { font-size: 13px; font-weight: 600; color: var(--text); }
-    .banner-score { font-size: 20px; font-weight: 700; line-height: 1.1; }
+    .player-banner.active.p1 {
+      border-color: rgba(224,48,48,0.5);
+      box-shadow: 0 0 18px rgba(224,48,48,0.1);
+    }
+    .player-banner.active.p2 {
+      border-color: rgba(51,102,255,0.5);
+      box-shadow: 0 0 18px rgba(51,102,255,0.1);
+    }
+     .banner-score {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
     .banner-score.p1c { color: var(--red); }
     .banner-score.p2c { color: var(--blue); }
-    .banner-mark { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .banner-mark {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
 
     .vs-badge {
-      font-size: 11px; font-weight: 700;
-      color: var(--dim); letter-spacing: 1px; flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--dim);
+      letter-spacing: 1px;
+      flex-shrink: 0;
     }
 
     /* ── Captured pieces ── */
