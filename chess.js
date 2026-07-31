@@ -57,7 +57,9 @@ function buildCoords() {
   const ranks = document.getElementById('coordRanks');
   const files = document.getElementById('coordFiles');
   ranks.innerHTML = [8,7,6,5,4,3,2,1].map(n => `<span>${n}</span>`).join('');
-  files.innerHTML = ['a','b','c','d','e','f','g','h'].map(f => `<span>${f}</span>`).join('');
+  files.innerHTML = ['A','B','C','D','E','F','G','H'].map(f => `<span>${f}</span>`).join('');
+  ranks.innerHTML = [8,7,6,5,4,3,2,1].map(n => `<span>${n}</span>`).join('');
+  files.innerHTML = ['A','B','C','D','E','F','G','H'].map(f => `<span>${f}</span>`).join('');
 }
 
 // ── New game ──────────────────────────────────────────────────────────────────
